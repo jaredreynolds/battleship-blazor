@@ -1,0 +1,37 @@
+@page "/pacman"
+
+<h1> Pacman </h1>
+
+<div style="margin: 100px 0 0 100px" >
+    <div class="row">
+        <PacmanSquare Position=1 CurrentPosition=@currentPosition />
+        <PacmanSquare Position=2 CurrentPosition=@currentPosition />
+        <PacmanSquare Position=3 CurrentPosition=@currentPosition />
+        <PacmanSquare Position=4 CurrentPosition=@currentPosition />
+        <PacmanSquare Position=5 CurrentPosition=@currentPosition />
+    </div>
+</div>
+<div style="margin: 100px 0 0 100px">
+    <button onclick="@MoveLeft">Move Left</button>
+    <button onclick="@MoveRight">Move Right</button>
+</div>
+
+@functions {
+    private int currentPosition = 3;
+
+    void MoveLeft()
+    {
+        if (currentPosition > 1)
+        {
+            currentPosition--;
+        }
+    }
+
+    void MoveRight()
+    {
+        if (currentPosition < 5)
+        {
+            currentPosition++;
+        }
+    }
+}
