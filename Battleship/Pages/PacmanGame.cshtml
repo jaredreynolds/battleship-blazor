@@ -4,34 +4,66 @@
 
 <div style="margin: 100px 0 0 100px" >
     <div class="row">
-        <PacmanSquare Position=1 CurrentPosition=@currentPosition />
-        <PacmanSquare Position=2 CurrentPosition=@currentPosition />
-        <PacmanSquare Position=3 CurrentPosition=@currentPosition />
-        <PacmanSquare Position=4 CurrentPosition=@currentPosition />
-        <PacmanSquare Position=5 CurrentPosition=@currentPosition />
+        <PacmanSquare X=1 Y=2 CurrentX=@currentX CurrentY=@currentY />
+        <PacmanSquare X=2 Y=2 CurrentX=@currentX CurrentY=@currentY />
+        <PacmanSquare X=3 Y=2 CurrentX=@currentX CurrentY=@currentY />
+        <PacmanSquare X=4 Y=2 CurrentX=@currentX CurrentY=@currentY />
+        <PacmanSquare X=5 Y=2 CurrentX=@currentX CurrentY=@currentY />
+    </div>
+    <div class="row">
+        <PacmanSquare X=1 Y=1 CurrentX=@currentX CurrentY=@currentY />
+        <PacmanSquare X=2 Y=1 CurrentX=@currentX CurrentY=@currentY />
+        <PacmanSquare X=3 Y=1 CurrentX=@currentX CurrentY=@currentY />
+        <PacmanSquare X=4 Y=1 CurrentX=@currentX CurrentY=@currentY />
+        <PacmanSquare X=5 Y=1 CurrentX=@currentX CurrentY=@currentY />
     </div>
 </div>
 <div style="margin: 100px 0 0 100px">
-    <button onclick="@MoveLeft">Move Left</button>
-    <button onclick="@MoveRight">Move Right</button>
+    <div style="margin-left: 50px">
+        <button onclick="@MoveUp">Move Up</button>
+    </div>
+    <div>
+        <button onclick="@MoveLeft">Move Left</button>
+        <button onclick="@MoveRight">Move Right</button>
+    </div>
+    <div style="margin-left: 43px">
+        <button onclick="@MoveDown">Move Down</button>
+    </div>
 </div>
 
 @functions {
-    private int currentPosition = 3;
+    private int currentX = 3;
+    private int currentY = 1;
 
     void MoveLeft()
     {
-        if (currentPosition > 1)
+        if (currentX > 1)
         {
-            currentPosition--;
+            currentX--;
         }
     }
 
     void MoveRight()
     {
-        if (currentPosition < 5)
+        if (currentX < 5)
         {
-            currentPosition++;
+            currentX++;
+        }
+    }
+
+    void MoveUp()
+    {
+        if (currentY < 2)
+        {
+            currentY++;
+        }
+    }
+
+    void MoveDown()
+    {
+        if (currentY > 1)
+        {
+            currentY--;
         }
     }
 }
