@@ -139,3 +139,15 @@ app {
 .square.unknown {
     background-color: gray;
 }
+
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.column {
+    float: left;
+    width: 50px;
+    padding: 5px;
+}

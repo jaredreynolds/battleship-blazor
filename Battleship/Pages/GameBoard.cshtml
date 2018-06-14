@@ -3,6 +3,7 @@
 <h1>Battleship</h1>
 <Grid squares="@squares" />
 @functions {
+    public Ship[] Fleet {get; set;}
     private GridSquare[][] squares { get{
         return new []{
             new []{
