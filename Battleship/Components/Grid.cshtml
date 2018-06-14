@@ -1,0 +1,20 @@
+<h2>Grid</h2>
+
+<div class="grid">
+    @foreach (var squareRow in squares)
+    {
+        <div class="square-row row">
+            @foreach(var square in squareRow)
+            {
+                // <div class="square @(Status.ToString().ToLower())"/>
+                <Square Status="@square.Status" />
+            }
+        </div>
+    }
+</div>
+
+@functions {
+    [Parameter]
+    private GridSquare[][] squares { get; set; }
+
+}

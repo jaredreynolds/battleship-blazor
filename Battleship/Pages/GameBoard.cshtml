@@ -1,3 +1,142 @@
 @page "/gameboard"
 
 <h1>Battleship</h1>
+<Grid squares="@squares" />
+@functions {
+    private GridSquare[][] squares { get{
+        return new []{
+            new []{
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown}
+            },
+            new []{
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown}
+            },
+            new []{
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown}
+            },
+            new []{
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown}
+            },
+            new []{
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown}
+            },
+            new []{
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown}
+            },
+            new []{
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown}
+            },
+            new []{
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown}
+            },
+            new []{
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown}
+            },
+            new []{
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown}
+            },
+            new []{
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown},
+                new GridSquare {Status = SquareStatus.Unknown}
+            }
+        };
+    }}
+}
