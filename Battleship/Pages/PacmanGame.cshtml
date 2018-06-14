@@ -41,6 +41,10 @@
         {
             currentX--;
         }
+        else
+        {
+            currentX = 5;
+        }
     }
 
     void MoveRight()
@@ -48,6 +52,10 @@
         if (currentX < 5)
         {
             currentX++;
+        }
+        else
+        {
+            currentX = 1;
         }
     }
 
@@ -57,6 +65,10 @@
         {
             currentY++;
         }
+        else
+        {
+            currentY = 1;
+        }
     }
 
     void MoveDown()
@@ -64,6 +76,10 @@
         if (currentY > 1)
         {
             currentY--;
+        }
+        else
+        {
+            currentY = 2;
         }
     }
 }
