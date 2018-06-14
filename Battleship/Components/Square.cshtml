@@ -1,6 +1,14 @@
-﻿<div class="square @(Status.ToString().ToLower()) col-xs-4" />
+﻿<div class="square @(Status.ToString().ToLower()) col-xs-4" >
+    @if (@Ship != null)
+    {
+        <div>*</div>
+    }
+</div>
 
 @functions {
     [Parameter]
     private SquareStatus Status { get; set; }
+    
+    [Parameter]
+    private Battleship.Ship Ship { get; set; }
 }

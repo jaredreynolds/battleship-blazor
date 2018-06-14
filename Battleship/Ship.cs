@@ -2,8 +2,12 @@ namespace Battleship
 {
     public class Ship
     {
-        public static ShipClass ShipClassThis {get; set;}   
+        public ShipClass ShipClassThis {get; set;}   
 
-        public bool[] ShipDamage = new bool[Fleet.ShipSize[ShipClassThis]];
+        public bool[] ShipDamage;
+
+        public Ship(ShipClass shipClass){
+            ShipDamage = new bool[Fleet.ShipSize[shipClass]];
+        }
     }
 }

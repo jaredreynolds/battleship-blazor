@@ -6,8 +6,7 @@
         <div class="square-row row">
             @foreach(var square in squareRow)
             {
-                // <div class="square @(Status.ToString().ToLower())"/>
-                <Square Status="@square.Status" />
+                <Square Status="@square.Status" Ship="@square.Ship" />
             }
         </div>
     }
