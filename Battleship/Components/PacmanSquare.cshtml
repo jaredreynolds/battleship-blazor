@@ -2,16 +2,22 @@
 
 @functions {
     [Parameter]
-    private int Position { get; set; }
+    private int X { get; set; }
 
     [Parameter]
-    private int CurrentPosition { get; set; }
+    private int Y { get; set; }
+
+    [Parameter]
+    private int CurrentX { get; set; }
+    
+    [Parameter]
+    private int CurrentY { get; set; }
 
     private string Pacman = "";
 
     string IsPacman()
     {
-        if (Position == CurrentPosition)
+        if (X == CurrentX && Y == CurrentY)
         {
             return "pacman";
         }
