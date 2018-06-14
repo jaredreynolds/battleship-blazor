@@ -12,7 +12,7 @@
     </div>
     <div class="row">
         <PacmanSquare X=1 Y=1 CurrentX=@currentX CurrentY=@currentY />
-        <PacmanSquare X=2 Y=1 CurrentX=@currentX CurrentY=@currentY />
+        <PacmanSquare X=2 Y=1 CurrentX=@currentX CurrentY=@currentY Wall=true />
         <PacmanSquare X=3 Y=1 CurrentX=@currentX CurrentY=@currentY />
         <PacmanSquare X=4 Y=1 CurrentX=@currentX CurrentY=@currentY />
         <PacmanSquare X=5 Y=1 CurrentX=@currentX CurrentY=@currentY />
@@ -37,6 +37,11 @@
 
     void MoveLeft()
     {
+        if (currentX - 1 == 2 && currentY == 1)
+        {
+            return;
+        }
+
         if (currentX > 1)
         {
             currentX--;
@@ -49,6 +54,11 @@
 
     void MoveRight()
     {
+        if (currentX + 1 == 2 && currentY == 1)
+        {
+            return;
+        }
+
         if (currentX < 5)
         {
             currentX++;
@@ -61,6 +71,11 @@
 
     void MoveUp()
     {
+        if (currentY + 1 == 1 && currentX == 2)
+        {
+            return;
+        }
+
         if (currentY < 2)
         {
             currentY++;
@@ -73,6 +88,11 @@
 
     void MoveDown()
     {
+        if (currentY - 1 == 1 && currentX == 2)
+        {
+            return;
+        }
+
         if (currentY > 1)
         {
             currentY--;

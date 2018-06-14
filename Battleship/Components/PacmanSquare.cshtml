@@ -13,17 +13,23 @@
     [Parameter]
     private int CurrentY { get; set; }
 
+    [Parameter]
+    private bool Wall { get; set; }
+
     private string Pacman = "";
 
     string IsPacman()
     {
+        if (Wall)
+        {
+            return "wall";
+        }
+
         if (X == CurrentX && Y == CurrentY)
         {
             return "pacman";
         }
-        else
-        {
-            return "";
-        }
+        
+        return "";
     }
 }

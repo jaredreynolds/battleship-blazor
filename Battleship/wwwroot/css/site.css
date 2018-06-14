@@ -161,3 +161,7 @@ app {
 .pacmanSquare.pacman {
     background-color: yellow;
 }
+
+.pacmanSquare.wall {
+    background-color: black;
+}
