@@ -121,3 +121,21 @@ app {
         display: block;
     }
 }
+
+.square {
+    border: 1px solid black;
+    height: 50px;
+    width: 50px;
+}
+
+.square.hit {
+    background-color: red;
+}
+
+.square.miss {
+    background-color: lightgray;
+}
+
+.square.unknown {
+    background-color: gray;
+}
