@@ -1,0 +1,23 @@
+<div class="pacmanSquare @IsPacman()"></div>
+
+@functions {
+    [Parameter]
+    private int Position { get; set; }
+
+    [Parameter]
+    private int CurrentPosition { get; set; }
+
+    private string Pacman = "";
+
+    string IsPacman()
+    {
+        if (Position == CurrentPosition)
+        {
+            return "pacman";
+        }
+        else
+        {
+            return "";
+        }
+    }
+}

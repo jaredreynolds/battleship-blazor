@@ -151,3 +151,13 @@ app {
     width: 50px;
     padding: 5px;
 }
+
+.pacmanSquare {
+    border: 1px solid black;
+    height: 50px;
+    width: 50px;
+}
+
+.pacmanSquare.pacman {
+    background-color: yellow;
+}
