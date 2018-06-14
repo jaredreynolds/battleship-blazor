@@ -145,3 +145,9 @@ app {
     clear: both;
     display: table;
 }
+
+.column {
+    float: left;
+    width: 50px;
+    padding: 5px;
+}
