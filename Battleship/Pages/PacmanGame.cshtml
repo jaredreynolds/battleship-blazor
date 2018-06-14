@@ -21,11 +21,17 @@
 
     void MoveLeft()
     {
-        currentPosition--;
+        if (currentPosition > 1)
+        {
+            currentPosition--;
+        }
     }
 
     void MoveRight()
     {
-        currentPosition++;
+        if (currentPosition < 5)
+        {
+            currentPosition++;
+        }
     }
 }
