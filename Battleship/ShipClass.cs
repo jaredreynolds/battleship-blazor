@@ -9,4 +9,5 @@ namespace Battleship
         Battleship = 4,
         Carrier = 5
     }
+
 }

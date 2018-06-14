@@ -4,9 +4,18 @@ namespace Battleship
 {
     public class Fleet 
     {
-        public static Dictionary<ShipClass,int> ShipSize = new Dictionary<ShipClass,int> 
-        { 
-            {ShipClass.Destroyer,2}, {ShipClass.Submarine,3}, {ShipClass.Cruiser,3}, {ShipClass.Battleship,4}, {ShipClass.Carrier,5}
-        };
+        public Fleet ()
+        {
+            Ships = new List<Ship>
+            {
+                new Ship(ShipClass.Destroyer),
+                new Ship(ShipClass.Submarine),
+                new Ship(ShipClass.Cruiser),
+                new Ship(ShipClass.Battleship),
+                new Ship(ShipClass.Carrier)
+            };
+        }
+
+        public List<Ship> Ships {get; set;}
     }
 }

@@ -2,12 +2,34 @@ namespace Battleship
 {
     public class Ship
     {
-        public ShipClass ShipClassThis {get; set;}   
-
-        public bool[] ShipDamage;
+        private ShipClass _shipClass;
 
         public Ship(ShipClass shipClass){
-            ShipDamage = new bool[Fleet.ShipSize[shipClass]];
+            _shipClass = shipClass;
+            ShipDamage = new bool[ShipClassSize.ShipSize[shipClass]];
         }
+
+        public ShipClass ShipClass {
+            get { return _shipClass; }
+            set { _shipClass = value; }
+        }   
+
+        public ShipLocation Position {get; set;}
+
+        public bool[] ShipDamage;
+    }
+
+    public struct ShipLocation
+    {
+        public int[] Coordinates;
+        public Direction Orientation;
+    }
+
+    public enum Direction
+    {
+        North = 0,
+        East = 1,
+        South = 2,
+        West = 3
     }
 }
