@@ -129,15 +129,17 @@ app {
 }
 
 .square.hit {
-    background-color: red;
+    background: url(https://upload.wikimedia.org/wikipedia/commons/2/22/Animated_fire_by_nevit.gif);
+    background-size: cover;
 }
 
 .square.miss {
-    background-color: lightgray;
+    background: url(https://upload.wikimedia.org/wikipedia/commons/f/fa/02_classical_greek_4_elements_water.gif);
 }
 
 .square.unknown {
-    background-color: gray;
+    background: url(https://upload.wikimedia.org/wikipedia/commons/7/77/MartianCloudsCuriosity2017.gif);
+    background-size: cover;
 }
 
 .row::after {
