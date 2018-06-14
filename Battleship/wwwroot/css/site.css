@@ -134,11 +134,12 @@ app {
 }
 
 .square.miss {
-    background: url(https://upload.wikimedia.org/wikipedia/commons/f/fa/02_classical_greek_4_elements_water.gif);
+    background: url(http://78.media.tumblr.com/a11bf82654e88ebbef799005f640b8e3/tumblr_n784zbeOLs1smno50o1_500.gif);
+    background-size: cover;
 }
 
 .square.unknown {
-    background: url(https://upload.wikimedia.org/wikipedia/commons/7/77/MartianCloudsCuriosity2017.gif);
+    background: url(https://media2.giphy.com/media/1TpGKApbHmkZa/giphy.gif);
     background-size: cover;
 }
 
