@@ -6,6 +6,7 @@ namespace Battleship
     public class Ship
     {
         private ShipClass _shipClass;
+        private List<Coordinate> _position;
 
         //TODO: This would be better off living somewhere else, such as in Game or another singleton
         private Dictionary<Direction,Tuple<int,int>> _directionIncrements = new Dictionary<Direction,Tuple<int,int>>
@@ -18,6 +19,7 @@ namespace Battleship
 
         public Ship(ShipClass shipClass, Direction direction, Coordinate startingLocation){
             _shipClass = shipClass;
+            _position = new List<Coordinate>();
             DeployShip(startingLocation, direction);
             ShipDamage = new bool[ShipClassSize.ShipSize[shipClass]];
         }
@@ -27,7 +29,9 @@ namespace Battleship
             set { _shipClass = value; }
         }   
 
-        public List<Coordinate> Position {get; }
+        public List<Coordinate> Position {
+            get { return _position;}
+        }
 
         public bool[] ShipDamage;
 
@@ -35,7 +39,7 @@ namespace Battleship
         {
             for (var shipCell = 0; shipCell < ShipClassSize.ShipSize[_shipClass]; shipCell++)
             {
-                Position.Add(new Coordinate(sternCoordinate.xAxis + (shipCell * _directionIncrements[orientation].Item1), 
+                _position.Add(new Coordinate(sternCoordinate.xAxis + (shipCell * _directionIncrements[orientation].Item1), 
                                             sternCoordinate.yAxis + (shipCell * _directionIncrements[orientation].Item2)));
             }
         }
