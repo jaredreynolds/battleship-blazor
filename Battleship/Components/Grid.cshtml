@@ -35,9 +35,8 @@
 
 @if (Player.IsMe && Game.State == GameState.ShipPlacement)
 {
-    <ShipPicker Fleet="@Player.Fleet" />
+    <ShipPicker Fleet="@Player.Fleet" SelectedShipChanged="@OnSelectedShipChanged" />
 }
-<div></div>
 
 @if (Player.IsMe && Game.State == GameState.ShipPlacement)
 {
@@ -54,8 +53,7 @@
 }
 
 @functions {
-    [Parameter]
-    private Player Player { get; set; }
+    [Parameter] private Player Player { get; set; }
 
     private bool inEditState = false;
 
@@ -69,4 +67,11 @@
         inEditState = false;
     }
 
+    private Ship ShipToPlace { get; set; }
+
+    private void OnSelectedShipChanged(Ship ship)
+    {
+        ShipToPlace = ship;
+        StateHasChanged();
+    }
 }
