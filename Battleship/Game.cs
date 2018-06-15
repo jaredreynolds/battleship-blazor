@@ -15,8 +15,8 @@ namespace Battleship
         {
             _currentPlayerService = currentPlayerService;
             _players = new[] {
-                new Player(0, currentPlayerService),
-                new Player(1, currentPlayerService)
+                new Player(0, currentPlayerService, "Player 1"),
+                new Player(1, currentPlayerService, "Player 2")
             };
         }
 

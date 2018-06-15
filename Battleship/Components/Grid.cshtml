@@ -1,8 +1,26 @@
 @inject Game Game
 
 <hr />
-<h3>Player @(Player.Id + 1) (@(Player.Id == 0 ? "Edward" : "JT"))</h3>
-<div>@(Player.IsMe ? "Me" : "Opponent")</div>
+<div class="row name-row">
+    @if (!inEditState)
+    {
+        <h3 class="player-name" onclick="@EditName">@Player.Name</h3>
+    
+        @if (Player.IsMe)
+        {
+            <span class="name-edit-text">(Click on name to edit)</span>
+        }
+    }
+    @if (inEditState)
+    {
+        <form>
+            New name:
+            <input type="text" name="Name" autofocus bind="@Player.Name" />
+            <button class="btn btn-primary" onclick="@ChangeName" type="submit">Update</button>
+        </form>
+    }
+</div>
+<div class="board-definition-name">@(Player.IsMe ? "Me" : "Opponent")</div>
 <div class="grid">
     @foreach (var squareRow in Player.Squares)
     {
@@ -17,27 +35,43 @@
 
 @if (Player.IsMe && Game.State == GameState.ShipPlacement)
 {
-    <ShipPicker Fleet="@Player.Fleet" />
+    <ShipPicker Fleet="@Player.Fleet" SelectedShipChanged="@OnSelectedShipChanged" />
 }
-<div></div>
 
 @if (Player.IsMe && Game.State == GameState.ShipPlacement)
 {
     <NavLink class="nav-link" href="gameboard?id=0">
-        <button>Player 1 View</button>
+        <button class="btn btn-primary">Player 1 View</button>
     </NavLink>
 }
 
 @if (Player.IsMe && Game.State == GameState.ShipPlacement)
 {
     <NavLink class="nav-link" href="gameboard?id=1">
-        <button>Player 2 View</button>
+        <button class="btn btn-primary">Player 2 View</button>
     </NavLink>
 }
 
 @functions {
-    [Parameter]
-    private Player Player { get; set; }
+    [Parameter] private Player Player { get; set; }
 
+    private bool inEditState = false;
 
+    void EditName()
+    {
+        inEditState = true;
+    }
+
+    void ChangeName()
+    {
+        inEditState = false;
+    }
+
+    private Ship ShipToPlace { get; set; }
+
+    private void OnSelectedShipChanged(Ship ship)
+    {
+        ShipToPlace = ship;
+        StateHasChanged();
+    }
 }
