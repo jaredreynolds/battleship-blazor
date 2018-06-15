@@ -8,11 +8,11 @@ namespace Battleship
         {
             Ships = new List<Ship>
             {
-                new Ship(ShipClass.Destroyer),
-                new Ship(ShipClass.Submarine),
-                new Ship(ShipClass.Cruiser),
-                new Ship(ShipClass.Battleship),
-                new Ship(ShipClass.Carrier)
+                new Ship(ShipClass.Destroyer, Direction.South, new Coordinate(0,0)),
+                new Ship(ShipClass.Submarine, Direction.South, new Coordinate(0,0)),
+                new Ship(ShipClass.Cruiser, Direction.South, new Coordinate(0,0)),
+                new Ship(ShipClass.Battleship, Direction.South, new Coordinate(0,0)),
+                new Ship(ShipClass.Carrier, Direction.South, new Coordinate(0,0))
             };
         }
 
