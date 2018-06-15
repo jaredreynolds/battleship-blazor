@@ -1,9 +1,19 @@
+using System;
+using System.Collections.Generic;
 using Battleship.Services;
 
 namespace Battleship
 {
     public class Player
     {
+        private Dictionary<Direction,Tuple<int,int>> _directionIncrements = new Dictionary<Direction,Tuple<int,int>>
+        {
+            {Direction.North, new Tuple<int,int>(0,1)}, 
+            {Direction.East, new Tuple<int,int>(1,0)}, 
+            {Direction.South, new Tuple<int,int>(0,-1)}, 
+            {Direction.West, new Tuple<int,int>(-1,0)}
+        };
+
         private readonly CurrentPlayerService _currentPlayerService;
 
         public Player(int id, CurrentPlayerService currentPlayerService)
