@@ -16,8 +16,9 @@ namespace Battleship
             {Direction.West, new Tuple<int,int>(-1,0)}
         };
 
-        public Ship(ShipClass shipClass, Direction dir, Coordinate startingLocation){
+        public Ship(ShipClass shipClass, Direction direction, Coordinate startingLocation){
             _shipClass = shipClass;
+            DeployShip(startingLocation, direction);
             ShipDamage = new bool[ShipClassSize.ShipSize[shipClass]];
         }
 
@@ -38,13 +39,5 @@ namespace Battleship
                                             sternCoordinate.yAxis + (shipCell * _directionIncrements[orientation].Item2)));
             }
         }
-    }
-
-    public enum Direction
-    {
-        North = 0,
-        East = 1,
-        South = 2,
-        West = 3
     }
 }
