@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Blazor.Browser.Rendering;
+﻿using Battleship.Services;
+using Microsoft.AspNetCore.Blazor.Browser.Rendering;
 using Microsoft.AspNetCore.Blazor.Browser.Services;
 using Microsoft.Extensions.DependencyInjection;
-using System;
 
 namespace Battleship
 {
@@ -12,6 +12,7 @@ namespace Battleship
             var serviceProvider = new BrowserServiceProvider(services =>
             {
                 // Add any custom services here
+                services.Add(ServiceDescriptor.Singleton<CurrentPlayerService, CurrentPlayerService>());
                 services.Add(ServiceDescriptor.Singleton<Game, Game>());
             });
 

@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using Battleship.Services;
 using Microsoft.AspNetCore.Blazor.Services;
 using Microsoft.AspNetCore.WebUtilities;
 
@@ -7,32 +8,29 @@ namespace Battleship
 {
     public class Game
     {
-        private readonly IUriHelper _uriHelper;
-        private readonly Player[] _players = new[]{
-            new Player(0),
-            new Player(1)
-        };
+        private readonly CurrentPlayerService _currentPlayerService;
+        private readonly Player[] _players;
 
-        public Game(IUriHelper uriHelper)
+        public Game(CurrentPlayerService currentPlayerService)
         {
-            _uriHelper = uriHelper;
+            _currentPlayerService = currentPlayerService;
+            _players = new[] {
+                new Player(0, currentPlayerService),
+                new Player(1, currentPlayerService)
+            };
         }
 
         public Players Players
         {
             get
             {
-                var me = GetPlayerId();
+                var me = _currentPlayerService.GetPlayerId();
                 return new Players(_players[me], _players[me == 0 ? 1 : 0]);
             }
         }
 
-        public int Turn { get; set; }
+        public GameState State { get; set; }
 
-        private int GetPlayerId()
-        {
-            var uri = new Uri(_uriHelper.GetAbsoluteUri());
-            return QueryHelpers.ParseQuery(uri.Query).TryGetValue("id", out var id) ? int.Parse(id.First()) : 0;
-        }
+        public int Turn { get; set; }
     }
 }

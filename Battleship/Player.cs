@@ -1,14 +1,25 @@
+using Battleship.Services;
+
 namespace Battleship
 {
     public class Player
     {
-        public int PlayerId;
+        private readonly CurrentPlayerService _currentPlayerService;
 
-        public Player(int id) {
-            PlayerId = id;
+        public Player(int id, CurrentPlayerService currentPlayerService)
+        {
+            Id = id;
+            _currentPlayerService = currentPlayerService;
         }
 
-        public GridSquare[][] squares { get{
+        public int Id { get; }
+
+        public bool IsMe
+        {
+            get => Id == _currentPlayerService.GetPlayerId();
+        }
+
+        public GridSquare[][] Squares { get {
             return new []{
                 new []{
                     new GridSquare {Status = SquareStatus.Unknown},

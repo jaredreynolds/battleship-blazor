@@ -1,11 +1,12 @@
 <hr/>
+<div>@(Player.IsMe ? "Me" : "Opponent")</div>
 <div class="grid">
-    @foreach (var squareRow in squares)
+    @foreach (var squareRow in Player.Squares)
     {
         <div class="square-row row">
             @foreach(var square in squareRow)
             {
-                <Square Status="@square.Status" Ship="@square.Ship" />
+                <Square Status="@square.Status" Ship="@(Player.IsMe ? square.Ship : null)" />
             }
         </div>
     }
@@ -13,6 +14,5 @@
 
 @functions {
     [Parameter]
-    private GridSquare[][] squares { get; set; }
-
+    private Player Player { get; set; }
 }
