@@ -28,6 +28,12 @@ namespace Battleship
             new Player(1)
         };
 
+        public Players Players{ get{
+            var me = GetPlayerId();
+            
+            return new Players(players[me], players[me == 0 ? 1 : 0]);
+        }}
+
         public int Turn{ get; set; }
 
         private int GetPlayerId() {

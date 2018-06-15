@@ -4,6 +4,10 @@ html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
+.grid {
+    margin: 0 60px;
+}
+
 app {
     position: relative;
     display: flex;

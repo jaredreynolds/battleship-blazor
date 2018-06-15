@@ -2,13 +2,25 @@
 @inject Game Game
 
 <h1>Battleship</h1>
+<div class="row">
+    <div class="col-xs-6">
+        <Grid squares="@Player.squares" />
+    </div>
+    <div class="col-xs-6">
+        <Grid squares="@Opponent.squares" />
+    </div>
+</div>
 
-<Grid squares="@Player.squares" />
 
 @functions {
     public Ship[] Fleet {get; set;}
 
     private Player Player { get{
-        return new Player(0);
+        return Game.Players.Me;
     }}
+
+    private Player Opponent { get{
+        return Game.Players.Opponent;
+    }}
+
 }
