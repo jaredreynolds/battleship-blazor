@@ -2,86 +2,82 @@
 
 <h1> Pacman </h1>
 
-<div style="margin: 100px 0 0 100px" >
-    <div class="row">
-        <PacmanSquare Wall=true />
-        <PacmanSquare Wall=true />
-        <PacmanSquare Wall=true />
-        <PacmanSquare Wall=true />
-        <PacmanSquare Wall=true />
-        <PacmanSquare Wall=true />
-        <PacmanSquare Wall=true />
-    </div>
-    <div class="row">
-        <PacmanSquare Wall=true />
-        <PacmanSquare X=1 Y=2 CurrentX=@currentX CurrentY=@currentY />
-        <PacmanSquare X=2 Y=2 CurrentX=@currentX CurrentY=@currentY />
-        <PacmanSquare X=3 Y=2 CurrentX=@currentX CurrentY=@currentY />
-        <PacmanSquare X=4 Y=2 CurrentX=@currentX CurrentY=@currentY />
-        <PacmanSquare X=5 Y=2 CurrentX=@currentX CurrentY=@currentY />
-        <PacmanSquare Wall=true />
-    </div>
-    <div class="row">
-        <PacmanSquare Wall=true />
-        <PacmanSquare X=1 Y=1 CurrentX=@currentX CurrentY=@currentY />
-        <PacmanSquare X=2 Y=1 CurrentX=@currentX CurrentY=@currentY Wall=true />
-        <PacmanSquare X=3 Y=1 CurrentX=@currentX CurrentY=@currentY />
-        <PacmanSquare X=4 Y=1 CurrentX=@currentX CurrentY=@currentY />
-        <PacmanSquare X=5 Y=1 CurrentX=@currentX CurrentY=@currentY />
-        <PacmanSquare Wall=true />
-    </div>
-    <div class="row">
-        <PacmanSquare Wall=true />
-        <PacmanSquare Wall=true />
-        <PacmanSquare Wall=true />
-        <PacmanSquare Wall=true />
-        <PacmanSquare Wall=true />
-        <PacmanSquare Wall=true />
-        <PacmanSquare Wall=true />
-    </div>
-</div>
-<div style="margin: 100px 0 0 100px">
-    <div style="margin-left: 50px">
-        <button onclick="@MoveUp">Move Up</button>
-    </div>
-    <div>
-        <button onclick="@MoveLeft">Move Left</button>
-        <button onclick="@MoveRight">Move Right</button>
-    </div>
-    <div style="margin-left: 43px">
-        <button onclick="@MoveDown">Move Down</button>
+<div class="pacmanSpacingAction" >
+    @{
+        var maxRows = 10;
+        var maxColumns = 12;
+        SetBoundaries(maxColumns, maxRows);
+    }
+    @for (var i = maxRows; i > 0; i--)
+    {
+        <div class="row">
+            @for (var j = 1; j <= maxColumns; j++)
+            {
+                <PacmanSquare X=j Y=i CurrentX=@currentX CurrentY=@currentY />
+            }
+        </div>
+    }
+    <div id="controlPanel" class="pacmanSpacingAction" style="margin-left: 25%">
+        <div style="margin-left: 50px">
+            <button onclick="@MoveUp">Move Up</button>
+        </div>
+        <div>
+            <button onclick="@MoveLeft">Move Left</button>
+            <button onclick="@MoveRight">Move Right</button>
+        </div>
+        <div style="margin-left: 43px">
+            <button onclick="@MoveDown">Move Down</button>
+        </div>
     </div>
 </div>
 
 @functions {
     private int currentX = 3;
     private int currentY = 1;
+    private int maxX = 0;
+    private int maxY = 0;
 
-    void MoveLeft()
+    private bool IsNotLeftBoundary()
     {
-        if (currentX - 1 == 2 && currentY == 1)
-        {
-            return;
-        }
+        return currentX > 1;
+    }
 
-        if (currentX > 1)
+    private bool IsNotRightBoundary()
+    {
+        return currentX < maxX;
+    }
+
+    private bool IsNotTopBoundary()
+    {
+        return currentY < maxY;
+    }
+
+    private bool IsNotBottomBoundary()
+    {
+        return currentY > 1;
+    }
+
+    public void SetBoundaries(int maxX, int maxY)
+    {
+        this.maxX = maxX;
+        this.maxY = maxY;
+    }
+
+    public void MoveLeft()
+    {
+        if (IsNotLeftBoundary())
         {
             currentX--;
         }
         else
         {
-            currentX = 5;
+            currentX = this.maxX;
         }
     }
 
-    void MoveRight()
+    public void MoveRight()
     {
-        if (currentX + 1 == 2 && currentY == 1)
-        {
-            return;
-        }
-
-        if (currentX < 5)
+        if (IsNotRightBoundary())
         {
             currentX++;
         }
@@ -91,14 +87,9 @@
         }
     }
 
-    void MoveUp()
+    public void MoveUp()
     {
-        if (currentY + 1 == 1 && currentX == 2)
-        {
-            return;
-        }
-
-        if (currentY < 2)
+        if (IsNotTopBoundary())
         {
             currentY++;
         }
@@ -108,20 +99,15 @@
         }
     }
 
-    void MoveDown()
+    public void MoveDown()
     {
-        if (currentY - 1 == 1 && currentX == 2)
-        {
-            return;
-        }
-
-        if (currentY > 1)
+        if (IsNotBottomBoundary())
         {
             currentY--;
         }
         else
         {
-            currentY = 2;
+            currentY = this.maxY;
         }
     }
 }

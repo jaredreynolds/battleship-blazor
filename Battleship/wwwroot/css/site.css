@@ -193,3 +193,7 @@ app {
 .pacmanSquare.wall {
     background-color: black;
 }
+
+.pacmanSpacingAction {
+    margin: 100px 0 0 100px;
+}
