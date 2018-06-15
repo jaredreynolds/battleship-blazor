@@ -19,7 +19,6 @@ namespace Battleship
 
         public Ship(ShipClass shipClass, Direction direction, Coordinate startingLocation){
             _shipClass = shipClass;
-            _position = new List<Coordinate>();
             DeployShip(startingLocation, direction);
             ShipDamage = new bool[ShipClassSize.ShipSize[shipClass]];
         }
@@ -37,6 +36,8 @@ namespace Battleship
 
         public void DeployShip (Coordinate sternCoordinate, Direction orientation)
         {
+            _position = new List<Coordinate>();
+            
             for (var shipCell = 0; shipCell < ShipClassSize.ShipSize[_shipClass]; shipCell++)
             {
                 _position.Add(new Coordinate(sternCoordinate.xAxis + (shipCell * _directionIncrements[orientation].Item1), 
