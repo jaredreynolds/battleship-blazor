@@ -9,6 +9,7 @@ namespace Battleship
         public Ship(ShipClass shipClass, Direction dir, Coordinate startingLocation){
             _shipClass = shipClass;
             ShipDamage = new bool[ShipClassSize.ShipSize[shipClass]];
+            #region coordinate stuff
             // Position.Coordinates.Add(startingLocation);
             // Coordinate modifiedLocation = startingLocation;
             // if(dir == Direction.North){
@@ -44,6 +45,7 @@ namespace Battleship
             //         Position.Coordinates.Add(modifiedLocation);
             //     }
             // }
+            #endregion
         }
 
         public ShipClass ShipClass {
@@ -51,15 +53,41 @@ namespace Battleship
             set { _shipClass = value; }
         }   
 
-        public ShipLocation Position {get; set;}
+        public List<Coordinate> Position {get; }
 
         public bool[] ShipDamage;
-    }
 
-    public struct ShipLocation
-    {
-        public List<Coordinate> Coordinates;
-        public Direction Orientation;
+        public void DeployShip (Coordinate sternCoordinate, Direction orientation)
+        {
+            var xIncrement = 0;
+            var yIncrement = 0;
+            switch (orientation)
+            {
+                case Direction.East:
+                    xIncrement = 1;
+                    yIncrement = 0;
+                    break;
+                case Direction.North:
+                    xIncrement = 0;
+                    yIncrement = 1;
+                    break;
+                case Direction.South:
+                    xIncrement = 0;
+                    yIncrement = -1;
+                    break;
+                case Direction.West:
+                    xIncrement = -1;
+                    yIncrement = 0;
+                    break;
+            }
+            var currentCoordinate = sternCoordinate;
+
+            for (var shipCell = 0; shipCell < ShipClassSize.ShipSize[_shipClass]; shipCell++)
+            {
+                currentCoordinate = new Coordinate(sternCoordinate.xAxis + xIncrement, sternCoordinate.yAxis + yIncrement);
+                Position.Add(currentCoordinate);
+            }
+        }
     }
 
     public enum Direction
