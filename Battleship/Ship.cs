@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace Battleship
@@ -6,46 +7,18 @@ namespace Battleship
     {
         private ShipClass _shipClass;
 
+        //TODO: This would be better off living somewhere else, such as in Game or another singleton
+        private Dictionary<Direction,Tuple<int,int>> _directionIncrements = new Dictionary<Direction,Tuple<int,int>>
+        {
+            {Direction.North, new Tuple<int,int>(0,1)}, 
+            {Direction.East, new Tuple<int,int>(1,0)}, 
+            {Direction.South, new Tuple<int,int>(0,-1)}, 
+            {Direction.West, new Tuple<int,int>(-1,0)}
+        };
+
         public Ship(ShipClass shipClass, Direction dir, Coordinate startingLocation){
             _shipClass = shipClass;
             ShipDamage = new bool[ShipClassSize.ShipSize[shipClass]];
-            #region coordinate stuff
-            // Position.Coordinates.Add(startingLocation);
-            // Coordinate modifiedLocation = startingLocation;
-            // if(dir == Direction.North){
-            //     //Modify the x coordinate
-            //     for(int i = 1; i < ShipClassSize.ShipSize[shipClass]; i++){
-            //         modifiedLocation.yAxis = modifiedLocation.yAxis--; 
-            //         Position.Coordinates.Add(modifiedLocation);
-            //     }
-            // }
-            // if (dir == Direction.South)
-            // {
-            //     //Modify the x coordinate
-            //     for (int i = 1; i < ShipClassSize.ShipSize[shipClass]; i++)
-            //     {
-            //         modifiedLocation.yAxis = modifiedLocation.yAxis++;
-            //         Position.Coordinates.Add(modifiedLocation);
-            //     }
-            // }
-            // if(dir == Direction.East){
-            //     // Modify the y coordinate
-            //     for (int i = 1; i < ShipClassSize.ShipSize[shipClass]; i++)
-            //     {
-            //         modifiedLocation.yAxis = modifiedLocation.xAxis--;
-            //         Position.Coordinates.Add(modifiedLocation);
-            //     }
-            // }
-            // if (dir == Direction.West)
-            // {
-            //     // Modify the y coordinate
-            //     for (int i = 1; i < ShipClassSize.ShipSize[shipClass]; i++)
-            //     {
-            //         modifiedLocation.yAxis = modifiedLocation.xAxis++;
-            //         Position.Coordinates.Add(modifiedLocation);
-            //     }
-            // }
-            #endregion
         }
 
         public ShipClass ShipClass {
@@ -59,33 +32,10 @@ namespace Battleship
 
         public void DeployShip (Coordinate sternCoordinate, Direction orientation)
         {
-            var xIncrement = 0;
-            var yIncrement = 0;
-            switch (orientation)
-            {
-                case Direction.East:
-                    xIncrement = 1;
-                    yIncrement = 0;
-                    break;
-                case Direction.North:
-                    xIncrement = 0;
-                    yIncrement = 1;
-                    break;
-                case Direction.South:
-                    xIncrement = 0;
-                    yIncrement = -1;
-                    break;
-                case Direction.West:
-                    xIncrement = -1;
-                    yIncrement = 0;
-                    break;
-            }
-            var currentCoordinate = sternCoordinate;
-
             for (var shipCell = 0; shipCell < ShipClassSize.ShipSize[_shipClass]; shipCell++)
             {
-                currentCoordinate = new Coordinate(sternCoordinate.xAxis + xIncrement, sternCoordinate.yAxis + yIncrement);
-                Position.Add(currentCoordinate);
+                Position.Add(new Coordinate(sternCoordinate.xAxis + (shipCell * _directionIncrements[orientation].Item1), 
+                                            sternCoordinate.yAxis + (shipCell * _directionIncrements[orientation].Item2)));
             }
         }
     }
