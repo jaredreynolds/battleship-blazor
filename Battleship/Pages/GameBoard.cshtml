@@ -1,4 +1,6 @@
 @page "/gameboard"
+
+@inject Microsoft.AspNetCore.Blazor.Services.IUriHelper UriHelper
 @inject Game Game
 
 <h1>Battleship</h1>
@@ -14,4 +16,17 @@
 
 @functions {
     public Ship[] Fleet {get; set;}
+
+    protected override void OnInit()
+    {
+        RefreshType();
+        UriHelper.OnLocationChanged += OnLocationChanges;
+    }
+
+    private void OnLocationChanges(object sender, string location) => RefreshType();
+
+    private void RefreshType()
+    {
+        StateHasChanged();
+    }
 }
