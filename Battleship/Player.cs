@@ -19,6 +19,8 @@ namespace Battleship
             get => Id == _currentPlayerService.GetPlayerId();
         }
 
+        public Fleet Fleet { get; } = new Fleet();
+
         public GridSquare[][] Squares { get {
             return new []{
                 new []{

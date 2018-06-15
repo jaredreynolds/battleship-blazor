@@ -159,6 +159,27 @@ app {
     padding: 5px;
 }
 
+.ship-picker {
+    cursor: pointer;
+}
+
+.ship-picker.selected {
+    background-color: yellow;
+}
+
+.ship-picker:hover {
+    background-color: lightyellow;
+}
+
+.ship-picker.selected:hover {
+    background-color: yellow;
+}
+
+.ship-picker .drawing {
+    white-space: pre;
+    font-family: monospace;
+}
+
 .pacmanSquare {
     border: 1px solid black;
     height: 50px;

@@ -1,0 +1,38 @@
+﻿<div>
+    @foreach (var ship in Fleet.Ships)
+    {
+        <div class="ship-picker @(GetSelectedClass(ship))" onclick="@(() => OnShipSelected(ship))">
+            <span class="drawing">@GetShipDrawing(ship)</span> @ship.ShipClass.ToString()
+        </div>
+    }
+</div>
+
+@functions {
+    [Parameter]
+    private Fleet Fleet { get; set; }
+
+    private ShipClass? SelectedShipClass { get; set; }
+
+    private string GetShipDrawing(Ship ship)
+    {
+        var length = ShipClassSize.ShipSize[ship.ShipClass];
+        var middle = String.Empty.PadRight(length - 2, '≡');
+        return $"⋖{middle}⋗".PadRight(5);
+    }
+
+    private void OnShipSelected(Ship ship)
+    {
+        if (SelectedShipClass.HasValue && SelectedShipClass == ship.ShipClass)
+        {
+            SelectedShipClass = null;
+        } else
+        {
+            SelectedShipClass = ship.ShipClass;
+        }
+    }
+
+    private string GetSelectedClass(Ship ship)
+    {
+        return (SelectedShipClass.HasValue && SelectedShipClass == ship.ShipClass) ? "selected" : "";
+    }
+}

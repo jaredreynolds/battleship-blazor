@@ -1,16 +1,23 @@
-<hr/>
+@inject Game Game
+
+<hr />
 <div>@(Player.IsMe ? "Me" : "Opponent")</div>
 <div class="grid">
     @foreach (var squareRow in Player.Squares)
     {
         <div class="square-row row">
-            @foreach(var square in squareRow)
+            @foreach (var square in squareRow)
             {
                 <Square Status="@square.Status" Ship="@(Player.IsMe ? square.Ship : null)" />
             }
         </div>
     }
 </div>
+@if (Player.IsMe && Game.State == GameState.ShipPlacement)
+{
+    <ShipPicker Fleet="@Player.Fleet" />
+}
+<div></div>
 
 @functions {
     [Parameter]
