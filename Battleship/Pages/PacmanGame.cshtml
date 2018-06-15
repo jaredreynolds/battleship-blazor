@@ -1,121 +1,31 @@
 @page "/pacman"
 
+@inject Microsoft.AspNetCore.Blazor.Services.IUriHelper UriHelper
+@inject Pacman Pacman
+@inject PacmanBoard PacmanBoard
+
 <h1> Pacman </h1>
 
 <div class="pacmanSpacingAction" >
-    @{
-        var maxRows = 10;
-        var maxColumns = 12;
-        SetBoundaries(maxColumns, maxRows);
-    }
-    @for (var i = maxRows; i > 0; i--)
+    @for (var i = PacmanBoard.MaxRows; i > 0; i--)
     {
         <div class="row">
-            @for (var j = 1; j <= maxColumns; j++)
+            @for (var j = 1; j <= PacmanBoard.MaxColumns; j++)
             {
-                <PacmanSquare X=j Y=i CurrentX=@currentX CurrentY=@currentY />
+                <PacmanSquare X=j Y=i CurrentX=@Pacman.XPosition CurrentY=@Pacman.YPosition />
             }
         </div>
     }
     <div id="controlPanel" class="pacmanSpacingAction" style="margin-left: 25%">
         <div style="margin-left: 50px">
-            <button onclick="@MoveUp">Move Up</button>
+            <button onclick="@Pacman.MoveUp">Move Up</button>
         </div>
         <div>
-            <button onclick="@MoveLeft">Move Left</button>
-            <button onclick="@MoveRight">Move Right</button>
+            <button onclick="@Pacman.MoveLeft">Move Left</button>
+            <button onclick="@Pacman.MoveRight">Move Right</button>
         </div>
         <div style="margin-left: 43px">
-            <button onclick="@MoveDown">Move Down</button>
+            <button onclick="@Pacman.MoveDown">Move Down</button>
         </div>
     </div>
 </div>
-
-@functions {
-    private int currentX = 1;
-    private int currentY = 1;
-    private int maxX = 0;
-    private int maxY = 0;
-
-    private bool IsNotLeftBoundary()
-    {
-        return currentX > 1;
-    }
-
-    private bool IsNotRightBoundary()
-    {
-        return currentX < maxX;
-    }
-
-    private bool IsNotTopBoundary()
-    {
-        return currentY < maxY;
-    }
-
-    private bool IsNotBottomBoundary()
-    {
-        return currentY > 1;
-    }
-
-    private void CenterPacman()
-    {
-        currentX = maxX / 2;
-        currentY = maxY / 2;
-    }
-
-    public void SetBoundaries(int maxX, int maxY)
-    {
-        this.maxX = maxX;
-        this.maxY = maxY;
-
-        CenterPacman();
-    }
-
-    public void MoveLeft()
-    {
-        if (IsNotLeftBoundary())
-        {
-            currentX--;
-        }
-        else
-        {
-            currentX = this.maxX;
-        }
-    }
-
-    public void MoveRight()
-    {
-        if (IsNotRightBoundary())
-        {
-            currentX++;
-        }
-        else
-        {
-            currentX = 1;
-        }
-    }
-
-    public void MoveUp()
-    {
-        if (IsNotTopBoundary())
-        {
-            currentY++;
-        }
-        else
-        {
-            currentY = 1;
-        }
-    }
-
-    public void MoveDown()
-    {
-        if (IsNotBottomBoundary())
-        {
-            currentY--;
-        }
-        else
-        {
-            currentY = this.maxY;
-        }
-    }
-}

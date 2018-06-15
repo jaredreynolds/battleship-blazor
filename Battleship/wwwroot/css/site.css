@@ -8,6 +8,32 @@ html, body {
     margin: 0 60px;
 }
 
+.btn.btn-primary {
+    font-size: 12px;
+    padding: 4px;
+}
+
+.name-row {
+    height: 36px;
+    padding: 0 60px;
+}
+
+.name-edit-text {
+    padding-left: 10px;
+    font-size: 12px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.player-name {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.board-definition-name {
+    padding: 0 45px;
+}
+
 app {
     position: relative;
     display: flex;
