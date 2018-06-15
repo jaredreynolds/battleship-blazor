@@ -20,7 +20,7 @@
         </form>
     }
 </div>
-<div>@(Player.IsMe ? "Me" : "Opponent")</div>
+<div class="board-definition-name">@(Player.IsMe ? "Me" : "Opponent")</div>
 <div class="grid">
     @foreach (var squareRow in Player.Squares)
     {
