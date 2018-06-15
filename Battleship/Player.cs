@@ -16,15 +16,13 @@ namespace Battleship
 
         private readonly CurrentPlayerService _currentPlayerService;
 
-        public Player(int id, CurrentPlayerService currentPlayerService, string name)
+        public Player(int id, CurrentPlayerService currentPlayerService)
         {
             Id = id;
-            Name = name;
             _currentPlayerService = currentPlayerService;
         }
 
         public int Id { get; }
-        public string Name { get; set; }
 
         public bool IsMe
         {
@@ -38,7 +36,7 @@ namespace Battleship
             return new []{
                 new []{
                     new GridSquare {Status = SquareStatus.Unknown, Location = new Coordinate(0,0)},
-                    new GridSquare {Status = SquareStatus.Hit, Ship = new Ship(ShipClass.Destroyer, Direction.South, new Coordinate(0,1)), Location = new Coordinate(0,1)},
+                    new GridSquare {Status = SquareStatus.Hit, Ship = new Ship(ShipClass.Destroyer, Direction.South, new Coordinate(0,1), _directionIncrements), Location = new Coordinate(0,1)},
                     new GridSquare {Status = SquareStatus.Unknown, Location = new Coordinate(0,2)},
                     new GridSquare {Status = SquareStatus.Unknown, Location = new Coordinate(0,3)},
                     new GridSquare {Status = SquareStatus.Unknown, Location = new Coordinate(0,4)},
@@ -58,7 +56,7 @@ namespace Battleship
                     new GridSquare {Status = SquareStatus.Unknown, Location = new Coordinate(1,6)},
                     new GridSquare {Status = SquareStatus.Unknown, Location = new Coordinate(1,7)},
                     new GridSquare {Status = SquareStatus.Unknown, Location = new Coordinate(1,8)},
-                    new GridSquare {Status = SquareStatus.Unknown, Ship = new Ship(ShipClass.Battleship, Direction.North, new Coordinate(1,9)), Location = new Coordinate(1,9)}
+                    new GridSquare {Status = SquareStatus.Unknown, Ship = new Ship(ShipClass.Battleship, Direction.North, new Coordinate(1,9), _directionIncrements), Location = new Coordinate(1,9)}
                 },
                 new []{
                     new GridSquare {Status = SquareStatus.Unknown},
