@@ -20,7 +20,10 @@ namespace Battleship
                     new GridSquare {Status = SquareStatus.Miss},
                     new GridSquare {Status = SquareStatus.Unknown},
                     new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown, Ship = new Ship(ShipClass.Battleship)}
+                    new GridSquare {Status = SquareStatus.Unknown},
+                    new GridSquare {Status = SquareStatus.Miss},
+                    new GridSquare {Status = SquareStatus.Unknown},
+                    new GridSquare {Status = SquareStatus.Unknown}
                 },
                 new []{
                     new GridSquare {Status = SquareStatus.Unknown},

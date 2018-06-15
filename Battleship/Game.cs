@@ -30,7 +30,7 @@ namespace Battleship
 
         public int Turn{ get; set; }
 
-        public int GetPlayerId() {
+        private int GetPlayerId() {
             var uri = new Uri(_uriHelper.GetAbsoluteUri());
             return Microsoft.AspNetCore.WebUtilities.QueryHelpers.ParseQuery(uri.Query).TryGetValue("id", out var id) ? int.Parse(id.First()) : 0;
         }
