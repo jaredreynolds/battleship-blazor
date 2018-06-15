@@ -12,6 +12,7 @@ namespace Battleship
             var serviceProvider = new BrowserServiceProvider(services =>
             {
                 // Add any custom services here
+                services.Add(ServiceDescriptor.Singleton<Game, Game>());
             });
 
             new BrowserRenderer(serviceProvider).AddComponent<App>("app");

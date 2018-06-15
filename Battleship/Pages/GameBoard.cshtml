@@ -1,11 +1,14 @@
 @page "/gameboard"
+@inject Game Game
 
 <h1>Battleship</h1>
+
 <Grid squares="@Player.squares" />
+
 @functions {
     public Ship[] Fleet {get; set;}
 
     private Player Player { get{
-        return new Player();
+        return new Player(0);
     }}
 }
