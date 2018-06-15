@@ -6,13 +6,15 @@ namespace Battleship
     {
         private readonly CurrentPlayerService _currentPlayerService;
 
-        public Player(int id, CurrentPlayerService currentPlayerService)
+        public Player(int id, CurrentPlayerService currentPlayerService, string name)
         {
             Id = id;
+            Name = name;
             _currentPlayerService = currentPlayerService;
         }
 
         public int Id { get; }
+        public string Name { get; set; }
 
         public bool IsMe
         {
