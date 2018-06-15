@@ -27,6 +27,11 @@ namespace Battleship
 
         public void MoveUp()
         {
+            if (pacmanBoard.IsWall(XPosition, YPosition + 1))
+            {
+                return;
+            }
+
             if (pacmanBoard.IsNotTopBoundary(YPosition))
             {
                 YPosition++;
@@ -39,6 +44,11 @@ namespace Battleship
 
         public void MoveDown()
         {
+            if (pacmanBoard.IsWall(XPosition, YPosition - 1))
+            {
+                return;
+            }
+
             if (pacmanBoard.IsNotBottomBoundary(YPosition))
             {
                 YPosition--;
@@ -51,6 +61,11 @@ namespace Battleship
 
         public void MoveRight()
         {
+            if (pacmanBoard.IsWall(XPosition + 1, YPosition))
+            {
+                return;
+            }
+
             if (pacmanBoard.IsNotRightBoundary(XPosition))
             {
                 XPosition++;
@@ -63,6 +78,11 @@ namespace Battleship
 
         public void MoveLeft()
         {
+            if (pacmanBoard.IsWall(XPosition - 1, YPosition))
+            {
+                return;
+            }
+            
             if (pacmanBoard.IsNotLeftBoundary(XPosition))
             {
                 XPosition--;
