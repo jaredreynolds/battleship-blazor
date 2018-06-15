@@ -9,41 +9,41 @@ namespace Battleship
         public Ship(ShipClass shipClass, Direction dir, Coordinate startingLocation){
             _shipClass = shipClass;
             ShipDamage = new bool[ShipClassSize.ShipSize[shipClass]];
-            Position.Coordinates.Add(startingLocation);
-            Coordinate modifiedLocation = startingLocation;
-            if(dir == Direction.North){
-                //Modify the x coordinate
-                for(int i = 1; i < ShipClassSize.ShipSize[shipClass]; i++){
-                    modifiedLocation.yAxis = modifiedLocation.yAxis--; 
-                    Position.Coordinates.Add(modifiedLocation);
-                }
-            }
-            if (dir == Direction.South)
-            {
-                //Modify the x coordinate
-                for (int i = 1; i < ShipClassSize.ShipSize[shipClass]; i++)
-                {
-                    modifiedLocation.yAxis = modifiedLocation.yAxis++;
-                    Position.Coordinates.Add(modifiedLocation);
-                }
-            }
-            if(dir == Direction.East){
-                // Modify the y coordinate
-                for (int i = 1; i < ShipClassSize.ShipSize[shipClass]; i++)
-                {
-                    modifiedLocation.yAxis = modifiedLocation.xAxis--;
-                    Position.Coordinates.Add(modifiedLocation);
-                }
-            }
-            if (dir == Direction.West)
-            {
-                // Modify the y coordinate
-                for (int i = 1; i < ShipClassSize.ShipSize[shipClass]; i++)
-                {
-                    modifiedLocation.yAxis = modifiedLocation.xAxis++;
-                    Position.Coordinates.Add(modifiedLocation);
-                }
-            }
+            // Position.Coordinates.Add(startingLocation);
+            // Coordinate modifiedLocation = startingLocation;
+            // if(dir == Direction.North){
+            //     //Modify the x coordinate
+            //     for(int i = 1; i < ShipClassSize.ShipSize[shipClass]; i++){
+            //         modifiedLocation.yAxis = modifiedLocation.yAxis--; 
+            //         Position.Coordinates.Add(modifiedLocation);
+            //     }
+            // }
+            // if (dir == Direction.South)
+            // {
+            //     //Modify the x coordinate
+            //     for (int i = 1; i < ShipClassSize.ShipSize[shipClass]; i++)
+            //     {
+            //         modifiedLocation.yAxis = modifiedLocation.yAxis++;
+            //         Position.Coordinates.Add(modifiedLocation);
+            //     }
+            // }
+            // if(dir == Direction.East){
+            //     // Modify the y coordinate
+            //     for (int i = 1; i < ShipClassSize.ShipSize[shipClass]; i++)
+            //     {
+            //         modifiedLocation.yAxis = modifiedLocation.xAxis--;
+            //         Position.Coordinates.Add(modifiedLocation);
+            //     }
+            // }
+            // if (dir == Direction.West)
+            // {
+            //     // Modify the y coordinate
+            //     for (int i = 1; i < ShipClassSize.ShipSize[shipClass]; i++)
+            //     {
+            //         modifiedLocation.yAxis = modifiedLocation.xAxis++;
+            //         Position.Coordinates.Add(modifiedLocation);
+            //     }
+            // }
         }
 
         public ShipClass ShipClass {

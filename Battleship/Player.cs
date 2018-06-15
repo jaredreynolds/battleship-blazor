@@ -46,7 +46,7 @@ namespace Battleship
                     new GridSquare {Status = SquareStatus.Unknown, Location = new Coordinate(1,6)},
                     new GridSquare {Status = SquareStatus.Unknown, Location = new Coordinate(1,7)},
                     new GridSquare {Status = SquareStatus.Unknown, Location = new Coordinate(1,8)},
-                    new GridSquare {Status = SquareStatus.Unknown, Ship = new Ship(ShipClass.Battleship), Location = new Coordinate(1,9)}
+                    new GridSquare {Status = SquareStatus.Unknown, Ship = new Ship(ShipClass.Battleship, Direction.North, new Coordinate(1,9)), Location = new Coordinate(1,9)}
                 },
                 new []{
                     new GridSquare {Status = SquareStatus.Unknown},
@@ -58,7 +58,7 @@ namespace Battleship
                     new GridSquare {Status = SquareStatus.Unknown},
                     new GridSquare {Status = SquareStatus.Unknown},
                     new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown, Ship = new Ship(ShipClass.Battleship)}
+                    new GridSquare {Status = SquareStatus.Unknown}
                 },
                 new []{
                     new GridSquare {Status = SquareStatus.Unknown},
@@ -70,7 +70,7 @@ namespace Battleship
                     new GridSquare {Status = SquareStatus.Unknown},
                     new GridSquare {Status = SquareStatus.Unknown},
                     new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown, Ship = new Ship(ShipClass.Battleship)}
+                    new GridSquare {Status = SquareStatus.Unknown}
                 },
                 new []{
                     new GridSquare {Status = SquareStatus.Unknown},
