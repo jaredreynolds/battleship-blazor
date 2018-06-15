@@ -18,7 +18,7 @@ namespace Battleship
             {
                 foreach (Ship ship in Opponent.Fleet.Ships)
                 {
-                    foreach(Coordinate cor in ship.Position.Coordinates){
+                    foreach(Coordinate cor in ship.Position){
                         if(cor == coordinate){
                             ship.ShipDamage = new bool[ship.ShipDamage.Length-1];
                             hits.Add(cor);
