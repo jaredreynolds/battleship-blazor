@@ -34,6 +34,17 @@ html, body {
     padding: 0 45px;
 }
 
+.ship-in-square {
+    font-size: 32px;
+    line-height: 30px;
+    width: 30px;
+    height: 33px;
+    margin: auto;
+    font-weight: bold;
+    color: black;
+    text-align: center;
+}
+
 app {
     position: relative;
     display: flex;
@@ -171,6 +182,12 @@ app {
 .square.unknown {
     background: url(https://media2.giphy.com/media/1TpGKApbHmkZa/giphy.gif);
     background-size: cover;
+}
+
+.opponent-square {
+    height: 50px;
+    width: 50px;
+    cursor: pointer;
 }
 
 .row::after {

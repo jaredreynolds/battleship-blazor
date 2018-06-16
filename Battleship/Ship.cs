@@ -1,43 +1,79 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Battleship
 {
-    public class Ship
+    public class Ship : IEquatable<Ship>
     {
-        private ShipClass _shipClass;
-        private List<Coordinate> _position;
+        private int _hitPoints;
+        private IDictionary<Coordinate, bool> _hitsByCoordinate = new Dictionary<Coordinate, bool>();
+        private Dictionary<Direction, Tuple<int, int>> _directionIncrements = new Dictionary<Direction, Tuple<int, int>>();
 
-        private Dictionary<Direction,Tuple<int,int>> _directionIncrements = new Dictionary<Direction,Tuple<int,int>>();
-
-        public Ship(ShipClass shipClass, Direction direction, Coordinate startingLocation, Dictionary<Direction,Tuple<int,int>> directionIncrements)
+        public Ship(ShipClass shipClass, Direction direction, Coordinate startingLocation, Dictionary<Direction, Tuple<int, int>> directionIncrements)
         {
-            _shipClass = shipClass;
+            ShipClass = shipClass;
             _directionIncrements = directionIncrements;
             DeployShip(startingLocation, direction);
-            ShipDamage = new bool[ShipClassSize.ShipSize[shipClass]];
+            _hitPoints = ShipClassSize.ShipSize[shipClass];
         }
 
-        public ShipClass ShipClass {
-            get { return _shipClass; }
-            set { _shipClass = value; }
-        }   
+        public ShipClass ShipClass { get; set; }
 
-        public List<Coordinate> Position {
-            get { return _position;}
-        }
+        public List<Coordinate> Position => _hitsByCoordinate.Keys.ToList();
 
-        public bool[] ShipDamage;
+        public bool IsSunk => _hitPoints == 0;
 
         public void DeployShip (Coordinate sternCoordinate, Direction orientation)
         {
-            _position = new List<Coordinate>();
-
-            for (var shipCell = 0; shipCell < ShipClassSize.ShipSize[_shipClass]; shipCell++)
+            _hitsByCoordinate.Clear();
+            
+            for (var shipCell = 0; shipCell < ShipClassSize.ShipSize[ShipClass]; shipCell++)
             {
-                _position.Add(new Coordinate(sternCoordinate.xAxis + (shipCell * _directionIncrements[orientation].Item1), 
-                                            sternCoordinate.yAxis + (shipCell * _directionIncrements[orientation].Item2)));
+                var x = sternCoordinate.xAxis + (shipCell * _directionIncrements[orientation].Item1);
+                var y = sternCoordinate.yAxis + (shipCell * _directionIncrements[orientation].Item2);
+                _hitsByCoordinate.Add(new Coordinate(x, y), false);
             }
+        }
+
+        public void Hit(Coordinate shot)
+        {
+            if (_hitsByCoordinate.TryGetValue(shot, out var alreadyHit) && alreadyHit)
+            {
+                if (!alreadyHit)
+                {
+                    Console.WriteLine($"ERROR: {ShipClass} is not at {shot}");
+                } else
+                {
+                    Console.WriteLine($"{ShipClass} was already hit at {shot}");
+                }
+                return;
+            }
+
+            Console.WriteLine($"{ShipClass} hit at {shot}");
+            _hitsByCoordinate[shot] = true;
+            _hitPoints = Math.Max(--_hitPoints, 0);
+        }
+
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as Ship);
+        }
+
+        public bool Equals(Ship other)
+        {
+            return other != null &&
+                   ShipClass == other.ShipClass;
+        }
+
+        public override int GetHashCode()
+        {
+            return -965370420 + ShipClass.GetHashCode();
+        }
+
+        public override string ToString()
+        {
+            return ShipClass.ToString();
         }
     }
 }

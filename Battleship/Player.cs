@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Battleship.Services;
 
 namespace Battleship
@@ -21,6 +22,7 @@ namespace Battleship
             Id = id;
             Name = name;
             _currentPlayerService = currentPlayerService;
+            InitSquares();
         }
 
         public int Id { get; }
@@ -32,142 +34,23 @@ namespace Battleship
 
         public Fleet Fleet { get; set; } = new Fleet();
 
+        public GridSquare[][] Squares { get; private set; }
+        public IDictionary<Coordinate, GridSquare> SquaresByCoordinate { get; } = new Dictionary<Coordinate, GridSquare>();
 
-        public GridSquare[][] Squares { get {
-            return new []{
-                new []{
-                    new GridSquare {Status = SquareStatus.Unknown, Location = new Coordinate(0,0)},
-                    new GridSquare {Status = SquareStatus.Hit, Ship = new Ship(ShipClass.Destroyer, Direction.South, new Coordinate(0,1), _directionIncrements), Location = new Coordinate(0,1)},
-                    new GridSquare {Status = SquareStatus.Unknown, Location = new Coordinate(0,2)},
-                    new GridSquare {Status = SquareStatus.Unknown, Location = new Coordinate(0,3)},
-                    new GridSquare {Status = SquareStatus.Unknown, Location = new Coordinate(0,4)},
-                    new GridSquare {Status = SquareStatus.Miss, Location = new Coordinate(0,5)},
-                    new GridSquare {Status = SquareStatus.Unknown, Location = new Coordinate(0,6)},
-                    new GridSquare {Status = SquareStatus.Unknown, Location = new Coordinate(0,7)},
-                    new GridSquare {Status = SquareStatus.Miss, Location = new Coordinate(0,8)},
-                    new GridSquare {Status = SquareStatus.Unknown, Location = new Coordinate(0,9)}
-                },
-                new []{
-                    new GridSquare {Status = SquareStatus.Unknown, Location = new Coordinate(1,0)},
-                    new GridSquare {Status = SquareStatus.Unknown, Location = new Coordinate(1,1)},
-                    new GridSquare {Status = SquareStatus.Unknown, Location = new Coordinate(1,2)},
-                    new GridSquare {Status = SquareStatus.Unknown, Location = new Coordinate(1,3)},
-                    new GridSquare {Status = SquareStatus.Unknown, Location = new Coordinate(1,4)},
-                    new GridSquare {Status = SquareStatus.Unknown, Location = new Coordinate(1,5)},
-                    new GridSquare {Status = SquareStatus.Unknown, Location = new Coordinate(1,6)},
-                    new GridSquare {Status = SquareStatus.Unknown, Location = new Coordinate(1,7)},
-                    new GridSquare {Status = SquareStatus.Unknown, Location = new Coordinate(1,8)},
-                    new GridSquare {Status = SquareStatus.Unknown, Ship = new Ship(ShipClass.Battleship, Direction.North, new Coordinate(1,9), _directionIncrements), Location = new Coordinate(1,9)}
-                },
-                new []{
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown}
-                },
-                new []{
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown}
-                },
-                new []{
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown}
-                },
-                new []{
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown}
-                },
-                new []{
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown}
-                },
-                new []{
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown}
-                },
-                new []{
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown}
-                },
-                new []{
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown}
-                },
-                new []{
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown},
-                    new GridSquare {Status = SquareStatus.Unknown}
-                }
-            };
-        }}
+        private void InitSquares()
+        {
+            Squares = Enumerable.Range(0, 10).Select(y =>
+                Enumerable.Range(0, 10).Select(x =>
+                {
+                    var square = new GridSquare { Location = new Coordinate(x, y) };
+                    SquaresByCoordinate.Add(square.Location, square);
+                    return square;
+                }).ToArray()).ToArray();
+
+            var testShip = Fleet.Ships[0];
+            testShip.DeployShip(new Coordinate(0, 0), Direction.East);
+            Squares[0][0].Ship = testShip;
+            Squares[0][1].Ship = testShip;
+        }
     }
 }

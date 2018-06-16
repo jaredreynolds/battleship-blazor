@@ -1,8 +1,14 @@
 ﻿<div class="square @(Status.ToString().ToLower()) col-xs-4" >
-    @if (@Ship != null)
-    {
-        <div>*</div>
-    }
+    <div>
+        @if (@Ship != null)
+        {
+            <div class="ship-in-square">≡</div>
+        }
+        @if (@Clickable == true)
+        {
+            <div class="opponent-square" onclick="@Fire"></div>
+        }
+    </div>
 </div>
 
 @functions {
@@ -11,4 +17,18 @@
     
     [Parameter]
     private Battleship.Ship Ship { get; set; }
+
+    [Parameter]
+    private bool Clickable {get; set;}
+
+    [Parameter]
+    private Action<Coordinate> clicked {get; set;}
+
+    [Parameter]
+    private Coordinate Coordinate {get; set;}
+
+    public void Fire ()
+    {
+        clicked?.Invoke(Coordinate);
+    }
 }
