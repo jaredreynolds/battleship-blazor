@@ -8,10 +8,9 @@
 </div>
 
 @functions {
-    [Parameter]
-    private Fleet Fleet { get; set; }
-
-    private ShipClass? SelectedShipClass { get; set; }
+    [Parameter] private Fleet Fleet { get; set; }
+    [Parameter] private ShipClass SelectedShipClass { get; set; }
+    [Parameter] private Action<Ship> SelectedShipChanged { get; set; }
 
     private string GetShipDrawing(Ship ship)
     {
@@ -22,17 +21,19 @@
 
     private void OnShipSelected(Ship ship)
     {
-        if (SelectedShipClass.HasValue && SelectedShipClass == ship.ShipClass)
+        if (SelectedShipClass == ship.ShipClass)
         {
-            SelectedShipClass = null;
+            SelectedShipClass = ShipClass.Unknown;
+            SelectedShipChanged?.Invoke(null);
         } else
         {
             SelectedShipClass = ship.ShipClass;
+            SelectedShipChanged?.Invoke(ship);
         }
     }
 
     private string GetSelectedClass(Ship ship)
     {
-        return (SelectedShipClass.HasValue && SelectedShipClass == ship.ShipClass) ? "selected" : "";
+        return SelectedShipClass == ship.ShipClass ? "selected" : "";
     }
 }

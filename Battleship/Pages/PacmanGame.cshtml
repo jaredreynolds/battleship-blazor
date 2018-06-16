@@ -12,7 +12,7 @@
         <div class="row">
             @for (var j = 1; j <= PacmanBoard.MaxColumns; j++)
             {
-                <PacmanSquare X=j Y=i CurrentX=@Pacman.XPosition CurrentY=@Pacman.YPosition />
+                <PacmanSquare X=j Y=i CurrentX=@Pacman.XPosition CurrentY=@Pacman.YPosition Wall=PacmanBoard.IsWall(j,i) />
             }
         </div>
     }

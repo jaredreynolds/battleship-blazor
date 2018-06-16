@@ -6,20 +6,14 @@ namespace Battleship
 {
     public class Ship : IEquatable<Ship>
     {
-        //TODO: This would be better off living somewhere else, such as in Game or another singleton
-        private Dictionary<Direction,Tuple<int,int>> _directionIncrements = new Dictionary<Direction,Tuple<int,int>>
-        {
-            {Direction.North, new Tuple<int,int>(0,1)}, 
-            {Direction.East, new Tuple<int,int>(1,0)}, 
-            {Direction.South, new Tuple<int,int>(0,-1)}, 
-            {Direction.West, new Tuple<int,int>(-1,0)}
-        };
-
         private int _hitPoints;
         private IDictionary<Coordinate, bool> _hitsByCoordinate = new Dictionary<Coordinate, bool>();
+        private Dictionary<Direction, Tuple<int, int>> _directionIncrements = new Dictionary<Direction, Tuple<int, int>>();
 
-        public Ship(ShipClass shipClass, Direction direction, Coordinate startingLocation){
+        public Ship(ShipClass shipClass, Direction direction, Coordinate startingLocation, Dictionary<Direction, Tuple<int, int>> directionIncrements)
+        {
             ShipClass = shipClass;
+            _directionIncrements = directionIncrements;
             DeployShip(startingLocation, direction);
             _hitPoints = ShipClassSize.ShipSize[shipClass];
         }
