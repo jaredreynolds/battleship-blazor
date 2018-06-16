@@ -1,32 +1,34 @@
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace Battleship
 {
     public class Salvo
     {
-        private Player Opponent;
-        private List<Coordinate> Shots;
-        public Salvo(Player opponent, List<Coordinate> shots)
+        public static IReadOnlyList<Ship> Fire(Player opponent, IEnumerable<Coordinate> shots)
         {
-            Opponent = opponent;
-            Shots = shots;
-        }
-
-        public List<Coordinate> Results(){
-            List<Coordinate> hits = new List<Coordinate>();
-            foreach (var coordinate in Shots)
+            var sunkShips = new HashSet<Ship>();
+            foreach (var shot in shots)
             {
-                foreach (Ship ship in Opponent.Fleet.Ships)
+                var square = opponent.SquaresByCoordinate[shot];
+                var ship = square.Ship;
+                if (ship == null)
                 {
-                    foreach(Coordinate cor in ship.Position){
-                        if(cor == coordinate){
-                            ship.ShipDamage = new bool[ship.ShipDamage.Length-1];
-                            hits.Add(cor);
-                        }
-                    }
+                    square.Status = SquareStatus.Miss;
+                    Console.WriteLine($"No ship found at {shot}");
+                    continue;
+                }
+
+                ship.Hit(shot);
+                square.Status = SquareStatus.Hit;
+                if (ship.IsSunk)
+                {
+                    sunkShips.Add(ship);
                 }
             }
-            return hits;
+            return new ReadOnlyCollection<Ship>(sunkShips.ToList());
         }
     }
 }

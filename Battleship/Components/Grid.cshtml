@@ -74,11 +74,14 @@
         if (location == null) {
             return;
         }
-        Console.WriteLine($"{location.xAxis}, {location.yAxis}");
-        // if location matches a ship coordinate? 
-        var hits = new Salvo(Game.Players.Opponent, new List<Coordinate>(new[] {location})).Results();
-        Console.WriteLine($"{hits.FirstOrDefault()?.xAxis}, {hits.FirstOrDefault()?.yAxis}");
 
+        Console.WriteLine($"Firing at {location}");
+        var sunkShip = Salvo.Fire(Game.Players.Opponent, new[] { location }).FirstOrDefault();
+        if (sunkShip != null)
+        {
+            Console.WriteLine($"{sunkShip}: sunk");
+        }
+
+        StateHasChanged();
     }
-
 }
