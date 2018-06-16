@@ -27,7 +27,7 @@
         <div class="square-row row">
             @foreach (var square in squareRow)
             {
-                <Square Status="@square.Status" Ship="@(Player.IsMe ? square.Ship : null)" />
+                <Square Coordinate="@square.Location" Status="@square.Status" Ship="@(Player.IsMe ? square.Ship : null)" Clickable="@(Player.IsMe ? false : true)" clicked="@HandleFireClick" />
             }
         </div>
     }
@@ -67,6 +67,18 @@
     void ChangeName()
     {
         inEditState = false;
+    }
+
+    public void HandleFireClick(Coordinate location)
+    {
+        if (location == null) {
+            return;
+        }
+        Console.WriteLine($"{location.xAxis}, {location.yAxis}");
+        // if location matches a ship coordinate? 
+        var hits = new Salvo(Game.Players.Opponent, new List<Coordinate>(new[] {location})).Results();
+        Console.WriteLine($"{hits.FirstOrDefault()?.xAxis}, {hits.FirstOrDefault()?.yAxis}");
+
     }
 
 }
