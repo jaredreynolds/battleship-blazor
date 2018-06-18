@@ -21,7 +21,7 @@ namespace Battleship
 
         private void Center()
         {
-            XPosition = pacmanBoard.MaxColumns / 2;
+            XPosition = pacmanBoard.MaxColumns / 2 + 1;
             YPosition = pacmanBoard.MaxRows / 2;
         }
 
