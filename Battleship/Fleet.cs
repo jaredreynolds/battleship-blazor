@@ -40,18 +40,52 @@ namespace Battleship
 
             for (var index = 1; index <= 5; index++)
             {
-                var validShipPlacement = false;
+                var withinGrid = false;
+                var nonoverlapping = false;
                 var direction = new Direction();
                 var coordinates = new Coordinate(0,0);
-                while (!validShipPlacement)
+
+                while (!(withinGrid && nonoverlapping))
                 {
                     direction = PickRandomDirection();
                     coordinates = PickRandomCoordinates();
-                    validShipPlacement = ValidateShipPlacement((ShipClass)index, direction, coordinates);
+                    withinGrid = ValidateShipPlacement((ShipClass)index, direction, coordinates);
+                    // This validation is not yet working
+                    // nonoverlapping = ValidateNoOverlap((ShipClass)index, direction, coordinates);
                 }
+                Console.WriteLine(index.ToString());
                 Ships.Add(new Ship((ShipClass)index, direction, coordinates, _directionIncrements));
             }
         }
+
+        // private bool ValidateNoOverlap(ShipClass index, Direction direction, Coordinate coordinates)
+        // {
+        //     Console.WriteLine($"ShipClass index: {index}");
+        //     var overlap = false;
+
+        //     for (var shipCell = 0; shipCell < ShipClassSize.ShipSize[index]; shipCell++)
+        //     {
+        //         Console.WriteLine($"checking cell number: {shipCell}");
+        //         var coordinate = new Coordinate(coordinates.xAxis + (shipCell * _directionIncrements[direction].Item1), 
+        //                                     coordinates.yAxis + (shipCell * _directionIncrements[direction].Item2));
+        //         Console.WriteLine($"checking cell at ({coordinate.xAxis},{coordinate.yAxis})");
+
+        //         for (var shipClass = 1; shipClass < (int)index; shipClass++)
+        //         {
+        //             if (shipClass == (int)index) break;
+        //             var otherShip = Ships.Find(s => (int)s.ShipClass == shipClass);
+        //             foreach (Coordinate otherCoordinate in otherShip.Position)
+        //             {
+        //                 if (otherCoordinate == coordinate)
+        //                 {
+        //                     overlap = true;
+        //                 }
+        //             }
+        //         }
+        //     }
+            
+        //     return overlap;
+        // }
 
         private Direction PickRandomDirection()
         {
