@@ -224,7 +224,7 @@ app {
 }
 
 .pacmanSquare {
-    border: 1px solid black;
+    background-color: lightslategray;
     height: 50px;
     width: 50px;
 }
@@ -234,9 +234,9 @@ app {
 }
 
 .pacmanSquare.wall {
-    background-color: black;
+    background-color: blue;
 }
 
 .pacmanSpacingAction {
-    margin: 100px 0 0 100px;
+    margin: 50px 0 0 50px;
 }

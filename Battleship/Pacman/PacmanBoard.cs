@@ -9,7 +9,7 @@ namespace Battleship
     public class PacmanBoard
     {
         public int MaxRows { get; set; } = 9;
-        public int MaxColumns { get; set; } = 11;
+        public int MaxColumns { get; set; } = 13;
 
         public PacmanBoard()
         {
@@ -58,6 +58,11 @@ namespace Battleship
 
         private bool IsTopWall(int x, int y)
         {
+            if (x == 7)
+            {
+                return false;
+            }
+
             if (y == MaxRows)
             {
                 return true;
@@ -68,6 +73,11 @@ namespace Battleship
 
         private bool IsRightWall(int x, int y)
         {
+            if (y == 5)
+            {
+                return false;
+            }
+
             if (x == MaxColumns)
             {
                 return true;
@@ -78,6 +88,11 @@ namespace Battleship
 
         private bool IsBottomWall(int x, int y)
         {
+            if (x == 7)
+            {
+                return false;
+            }
+            
             if (y == 1)
             {
                 return true;
@@ -88,6 +103,11 @@ namespace Battleship
 
         private bool IsLeftWall(int x, int y)
         {
+            if (y == 5)
+            {
+                return false;
+            }
+
             if (x == 1)
             {
                 return true;
@@ -95,18 +115,32 @@ namespace Battleship
 
             return false;
         }
+
         public bool IsWall(int x, int y)
         {
+            if (y == 7
+            || y == 3)
+            {
+                if (x == 3
+                || x == 4
+                || x == 6
+                || x == 8
+                || x == 10
+                || x == 11)
+                {
+                    return true;
+                }
+            }
+
             if (y == 5)
             {
-                if (x == 2 
-                    || x == 3 
-                    || x == 4 
-                    || x == 6
-                    || x == 7
-                    || x == 8
-                    || x == 10
-                    || x == 11)
+                if (x == 3 
+                || x == 4 
+                || x == 6
+                || x == 7
+                || x == 8
+                || x == 10
+                || x == 11)
                 {
                     return true;
                 }
